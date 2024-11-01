@@ -17,6 +17,6 @@ services:
   web:
     container_name: 14_calculator
     hostname: app
-    build: Calculator/
+    build: 14_Calculator/
     ports:
       - "5014:5014"

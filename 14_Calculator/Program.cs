@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Calculator.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -5,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 string mariadbCS = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<CalculatorContext>(options =>
+{
+    options.UseMySql(mariadbCS, new MySqlServerVersion(new Version(10, 5, 15)));
+});
 
 builder.Services.AddRazorPages();
 
@@ -30,4 +37,3 @@ app.MapControllerRoute(
     pattern: "{controller=Calculator}/{action=Index}/{id?}");
 
 app.Run();
-

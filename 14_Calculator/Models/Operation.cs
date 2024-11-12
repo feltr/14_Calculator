@@ -17,4 +17,3 @@ namespace Calculator.Models
         Divide = 4
     }
 }
-

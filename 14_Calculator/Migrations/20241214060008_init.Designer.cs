@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace _14_Calculator.Migrations
 {
     [DbContext(typeof(CalculatorContext))]
-    [Migration("20241101122510_m_init")]
-    partial class m_init
+    [Migration("20241214060008_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,17 +26,17 @@ namespace _14_Calculator.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Operand_1")
-                        .HasColumnType("varchar(128)");
+                    b.Property<double>("Operand_1")
+                        .HasColumnType("double");
 
-                    b.Property<string>("Operand_2")
-                        .HasColumnType("varchar(128)");
+                    b.Property<double>("Operand_2")
+                        .HasColumnType("double");
 
                     b.Property<string>("Result")
                         .HasColumnType("varchar(128)");
 
-                    b.Property<string>("Type_operation")
-                        .HasColumnType("varchar(128)");
+                    b.Property<int>("Type_operation")
+                        .HasColumnType("int");
 
                     b.HasKey("ID_DataInputVariant");
 

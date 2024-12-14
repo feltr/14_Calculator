@@ -10,9 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extension\**" />
     <Compile Remove="Views\Новая папка\**" />
+    <Content Remove="Extension\**" />
     <Content Remove="Views\Новая папка\**" />
+    <EmbeddedResource Remove="Extension\**" />
     <EmbeddedResource Remove="Views\Новая папка\**" />
+    <None Remove="Extension\**" />
     <None Remove="Views\Новая папка\**" />
   </ItemGroup>
 
@@ -28,10 +32,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Extension\" />
   </ItemGroup>
 
 </Project>

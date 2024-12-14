@@ -1,5 +1,4 @@
-﻿using Calculator.Services;
-using Confluent.Kafka;
+﻿using Confluent.Kafka;
 using System;
 using System.Threading.Tasks;
 

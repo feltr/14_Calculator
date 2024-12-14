@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Calculator.Models;
-using Calculator.Models;
 
 namespace Calculator.Data
 {

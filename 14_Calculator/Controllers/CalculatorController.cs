@@ -1,57 +1,42 @@
-﻿using Calculator.Data;
+using Calculator.Data;
+using Calculator.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Calculator.Controllers
 {
-    public enum Operation { Add, Subtract, Multiply, Divide }
-
     public class CalculatorController : Controller
     {
-        private CalculatorContext _context;
-
-        public CalculatorController(CalculatorContext context)
+        public CalculatorController()
         {
-            _context = context;
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        /// <summary>
+        /// Отображение страницы Index.
+        /// </summary>
+        public IActionResult Index() => View();
 
+        /// <summary>
+        /// Обработка запроса на вычисление.
+        /// </summary>
+        /// <param name="num1">Первый операнд.</param>
+        /// <param name="num2">Второй операнд.</param>
+        /// <param name="operation">Тип операции (сложение, вычитание, умножение, деление).</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Calculate(double num1, double num2, Operation operation)
+        public IActionResult Index(double num1, double num2, Operation operation)
         {
-            double result = 0;
-            switch (operation)
+            // Подготовка объекта для расчета
+            var dataInputVariant = new DataInputVariant
             {
-                case Operation.Add:
-                    result = num1 + num2;
-                    break;
-                case Operation.Subtract:
-                    result = num1 - num2;
-                    break;
-                case Operation.Multiply:
-                    result = num1 * num2;
-                    break;
-                case Operation.Divide:
-                    result = num1 / num2;
-                    break;
-            }
-            ViewBag.Result = result;
-            DataInputVariant dataInputVariant = new DataInputVariant();
-            dataInputVariant.Operand_1 = num1.ToString();
-            dataInputVariant.Operand_2 = num2.ToString();
-            dataInputVariant.Type_operation = operation.ToString();
-            dataInputVariant.Result = result.ToString();
+                Operand_1 = num1,
+                Operand_2 = num2,
+                Type_operation = operation,
+            };
 
-            _context.DataInputVariants.Add(dataInputVariant);
-            _context.SaveChanges();
+            ViewBag.Result = CalculatorLibrary.CalculateOperation(num1, num2, operation).ToString();
 
-            return View("Index");
+            // Перенаправление на страницу Index
+            return View();
         }
     }
 }
